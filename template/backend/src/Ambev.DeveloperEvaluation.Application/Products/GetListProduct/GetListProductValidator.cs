@@ -6,7 +6,7 @@ namespace Ambev.DeveloperEvaluation.Application.Products.GetListProduct
     {
         public GetListProductValidator()
         {
-            RuleFor(r => r).NotEmpty().WithMessage("Something went wrong!");
+            RuleFor(r => r).NotEmpty().WithMessage("Something went wrong in Product List!");
         }
     }
 }

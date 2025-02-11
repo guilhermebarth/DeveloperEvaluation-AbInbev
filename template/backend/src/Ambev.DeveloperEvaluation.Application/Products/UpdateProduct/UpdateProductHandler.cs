@@ -29,7 +29,7 @@ namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct
 
             var updatedProduct = await _productRepository.UpdateAsync(product, cancellationToken);
             if (updatedProduct == null)
-                throw new KeyNotFoundException($"User with ID {request.Id} not found");
+                throw new KeyNotFoundException($"Product with ID {request.Id} not found");
 
             var result = _mapper.Map<UpdateProductResponse>(updatedProduct);
 
