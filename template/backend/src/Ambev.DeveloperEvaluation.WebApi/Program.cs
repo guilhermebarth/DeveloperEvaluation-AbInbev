@@ -3,8 +3,10 @@ using Ambev.DeveloperEvaluation.Common.HealthChecks;
 using Ambev.DeveloperEvaluation.Common.Logging;
 using Ambev.DeveloperEvaluation.Common.Security;
 using Ambev.DeveloperEvaluation.Common.Validation;
+using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Ambev.DeveloperEvaluation.IoC;
 using Ambev.DeveloperEvaluation.ORM;
+using Ambev.DeveloperEvaluation.ORM.Repositories;
 using Ambev.DeveloperEvaluation.WebApi.Middleware;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +37,13 @@ public class Program
                     b => b.MigrationsAssembly("Ambev.DeveloperEvaluation.ORM")
                 )
             );
+            builder.Services.AddDbContext<DeveloperSalesContext>(options =>
+                options.UseNpgsql(
+                    builder.Configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly("Ambev.DeveloperEvaluation.ORM")
+                )
+            );
+
 
             builder.Services.AddJwtAuthentication(builder.Configuration);
 
@@ -51,6 +60,9 @@ public class Program
             });
 
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            builder.Services.AddTransient<IProductRepository, ProductRepository>();
+            builder.Services.AddTransient<ICartRepository, CartRepository>();
+
 
             var app = builder.Build();
             app.UseMiddleware<ValidationExceptionMiddleware>();
