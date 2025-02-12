@@ -16,7 +16,7 @@ namespace Ambev.DeveloperEvaluation.Application.Carts.UpdateCart
             _mapper = mapper;
         }
 
-        public async Task<UpdateCartResponse> Handle(UpdateCartCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateCartResult> Handle(UpdateCartCommand request, CancellationToken cancellationToken)
         {
             var validator = new UpdateCartValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
@@ -30,7 +30,7 @@ namespace Ambev.DeveloperEvaluation.Application.Carts.UpdateCart
             if (updatedCart == null)
                 throw new KeyNotFoundException($"Cart with ID {request.Id} not found");
 
-            var result = _mapper.Map<UpdateCartResponse>(updatedCart);
+            var result = _mapper.Map<UpdateCartResult>(updatedCart);
 
             return result;
         }

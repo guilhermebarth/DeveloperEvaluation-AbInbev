@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct
 {
-    public class UpdateProductHandler : IRequestHandler<UpdateProductCommand, UpdateProductResponse>
+    public class UpdateProductHandler : IRequestHandler<UpdateProductCommand, UpdateProductResult>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
@@ -17,7 +17,7 @@ namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct
             _mapper = mapper;
         }
 
-        public async Task<UpdateProductResponse> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateProductResult> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             var validator = new UpdateProductValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
@@ -31,7 +31,7 @@ namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct
             if (updatedProduct == null)
                 throw new KeyNotFoundException($"Product with ID {request.Id} not found");
 
-            var result = _mapper.Map<UpdateProductResponse>(updatedProduct);
+            var result = _mapper.Map<UpdateProductResult>(updatedProduct);
 
             return result;
         }

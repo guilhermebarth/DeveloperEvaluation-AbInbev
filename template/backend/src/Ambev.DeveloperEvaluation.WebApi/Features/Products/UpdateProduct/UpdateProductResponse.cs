@@ -1,6 +1,6 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
 
-namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.UpdateProduct
 {
     public class UpdateProductResponse
     {
