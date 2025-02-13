@@ -13,7 +13,7 @@ namespace Ambev.DeveloperEvaluation.ORM
         public DbSet<Cart> Cart { get; set; }
         public DbSet<Rating> Rate { get; set; }
 
-        public DeveloperSalesContext(DbContextOptions<DefaultContext> options) : base(options)
+        public DeveloperSalesContext(DbContextOptions<DeveloperSalesContext> options) : base(options)
         {
         }
 
@@ -25,24 +25,24 @@ namespace Ambev.DeveloperEvaluation.ORM
 
     }
 
-    public class DeveloperSalesDbContextFactory : IDesignTimeDbContextFactory<DefaultContext>
+    public class DeveloperSalesDbContextFactory : IDesignTimeDbContextFactory<DeveloperSalesContext>
     {
-        public DefaultContext CreateDbContext(string[] args)
+        public DeveloperSalesContext CreateDbContext(string[] args)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            var builder = new DbContextOptionsBuilder<DefaultContext>();
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            var builder = new DbContextOptionsBuilder<DeveloperSalesContext>();
+            var connectionString = configuration.GetConnectionString("DeveloperSalesConnection");
 
             builder.UseNpgsql(
                    connectionString,
                    b => b.MigrationsAssembly("Ambev.DeveloperEvaluation.WebApi")
             );
 
-            return new DefaultContext(builder.Options);
+            return new DeveloperSalesContext(builder.Options);
         }
     }
 }
