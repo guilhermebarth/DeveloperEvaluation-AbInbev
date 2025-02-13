@@ -1,8 +1,8 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
 
-namespace Ambev.DeveloperEvaluation.Application.Carts.UpdateCart
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Carts.CreateCart
 {
-    public class UpdateCartResponse
+    public class CreateCartResponse
     {
         public int Id { get; set; }
         public int UserId { get; set; }

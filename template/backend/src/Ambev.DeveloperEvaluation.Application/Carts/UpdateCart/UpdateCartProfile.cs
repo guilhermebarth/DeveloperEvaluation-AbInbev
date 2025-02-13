@@ -7,7 +7,7 @@ namespace Ambev.DeveloperEvaluation.Application.Carts.UpdateCart
     {
         public UpdateCartProfile()
         {
-            CreateMap<Cart, UpdateCartResponse>();
+            CreateMap<Cart, UpdateCartResult>();
         }
     }
 }
