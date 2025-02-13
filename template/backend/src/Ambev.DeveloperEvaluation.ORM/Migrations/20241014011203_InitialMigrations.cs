@@ -66,7 +66,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("", x => x.);
+                    //table.PrimaryKey("", x => x.);
                 });
         }
 
