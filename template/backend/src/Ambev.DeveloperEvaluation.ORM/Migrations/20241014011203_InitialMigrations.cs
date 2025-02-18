@@ -27,47 +27,53 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Rating",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Rate = table.Column<decimal>(type: "decimal", nullable: false),
+            //migrationBuilder.CreateTable(
+            //    name: "Rating",
+            //    columns: table => new
+            //    {
+            //        Id = table.Column<int>(type: "int", nullable: false),
+            //        Rate = table.Column<decimal>(type: "decimal", nullable: false),
+            //        Count = table.Column<int>(type: "int", nullable: false),
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_Ratings", x => x.Id);
+            //    }
+            //    );
 
-                }
-                );
+            //migrationBuilder.CreateTable(
+            //    name: "Product",
+            //    columns: table => new
+            //    {
+            //        Id = table.Column<int>(type: "integer", nullable: false),
+            //        Title = table.Column<string>(type: "varchar(30)", nullable: false),
+            //        Price = table.Column<decimal>(type: "decimal", nullable: false),
+            //        Description = table.Column<string>(type: "varchar(120)", nullable: false),
+            //        Category = table.Column<string>(type: "varchar(25)", nullable: false),
+            //        Image = table.Column<string>(type: "varchar(200)", nullable: false),
+            //        Rating = table.Column<int>(type: "integer", nullable: false),
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_Products", x => x.Id);
+            //        //table.ForeignKey("FK_Ratings", x => x.Rating);
+            //    }
+            //    );
 
-            migrationBuilder.CreateTable(
-                name: "Product",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false),
-                    Title = table.Column<string>(type: "varchar(30)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal", nullable: false),
-                    Description = table.Column<string>(type: "varchar(120)", nullable: false),
-                    Category = table.Column<string>(type: "varchar(25)", nullable: false),
-                    Image = table.Column<string>(type: "varchar(200)", nullable: false),
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                }
-                );
 
+            //migrationBuilder.CreateTable(
+            //    name: "Cart",
+            //    columns: table => new
+            //    {
+            //        Id = table.Column<int>(type: "integer", nullable: false),
+            //        UserId = table.Column<int>(type: "integer", nullable: false),
+            //        Date = table.Column<string>(type: "varchar(30)", nullable: false)
 
-            migrationBuilder.CreateTable(
-                name: "Cart",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
-                    Date = table.Column<string>(type: "varchar(30)", nullable: false)
-
-                },
-                constraints: table =>
-                {
-                    //table.PrimaryKey("", x => x.);
-                });
+            //    },
+            //    constraints: table =>
+            //    {
+            //        //table.PrimaryKey("", x => x.);
+            //    });
         }
 
         /// <inheritdoc />

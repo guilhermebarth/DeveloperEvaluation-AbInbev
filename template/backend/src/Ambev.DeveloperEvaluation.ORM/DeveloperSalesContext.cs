@@ -8,7 +8,7 @@ namespace Ambev.DeveloperEvaluation.ORM
 {
     public class DeveloperSalesContext : DbContext
     {
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> Product { get; set; }
         public DbSet<BoughtProducts> BoughtProducts { get; set; }
         public DbSet<Cart> Cart { get; set; }
         public DbSet<Rating> Rate { get; set; }
@@ -20,6 +20,12 @@ namespace Ambev.DeveloperEvaluation.ORM
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            modelBuilder.Entity<Product>().ToTable("Product");
+            modelBuilder.Entity<BoughtProducts>().ToTable("BoughtProducts");
+            modelBuilder.Entity<Cart>().ToTable("Cart");
+            modelBuilder.Entity<Rating>().ToTable("Rating");
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -31,11 +37,11 @@ namespace Ambev.DeveloperEvaluation.ORM
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
             var builder = new DbContextOptionsBuilder<DeveloperSalesContext>();
-            var connectionString = configuration.GetConnectionString("DeveloperSalesConnection");
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             builder.UseNpgsql(
                    connectionString,

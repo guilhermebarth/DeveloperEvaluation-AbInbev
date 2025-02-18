@@ -39,7 +39,7 @@ public class Program
             );
             builder.Services.AddDbContext<DeveloperSalesContext>(options =>
                 options.UseNpgsql(
-                    builder.Configuration.GetConnectionString("DeveloperSalesConnection"),
+                    builder.Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("Ambev.DeveloperEvaluation.ORM")
                 )
             );
@@ -81,6 +81,13 @@ public class Program
             app.UseBasicHealthChecks();
 
             app.MapControllers();
+
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<DeveloperSalesContext>();
+                dbContext.Database.EnsureCreated(); // Ensures the database schema is created
+            }
 
             app.Run();
         }

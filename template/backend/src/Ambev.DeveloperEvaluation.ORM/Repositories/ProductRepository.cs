@@ -14,7 +14,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
 
         public async Task<Product> CreateAsync(Product product, CancellationToken cancellationToken = default)
         {
-            await _context.Products.AddAsync(product, cancellationToken);
+            await _context.Product.AddAsync(product, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 
             return product;
@@ -22,12 +22,12 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
 
         public async Task<List<Product>> GetListProducts(CancellationToken cancellationToken = default)
         {
-            return await _context.Products.ToListAsync(cancellationToken);
+            return await _context.Product.ToListAsync(cancellationToken);
         }
 
         public async Task<Product?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
-            return await _context.Products.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+            return await _context.Product.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
         }
 
         public async Task<Product?> UpdateAsync(Product product, CancellationToken cancellationToken = default)
@@ -39,7 +39,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
                 return null;
             }
 
-            _context.Products.Update(product);
+            _context.Product.Update(product);
             await _context.SaveChangesAsync(cancellationToken);
 
             return product;
@@ -51,7 +51,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             if (product == null)
                 return false;
 
-            _context.Products.Remove(product);
+            _context.Product.Remove(product);
             await _context.SaveChangesAsync(cancellationToken);
             return true;
         }
