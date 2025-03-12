@@ -23,7 +23,13 @@ public class CreateUserCommand : IRequest<CreateUserResult>
     /// <summary>
     /// Gets or sets the username of the user to be created.
     /// </summary>
-    public string Username { get; set; } = string.Empty;
+    public string FirstName { get; set; } = string.Empty;
+
+    public string LastName { get; set; } = string.Empty;
+
+    public string ManagerName { get; set; }
+
+    public DateTime DateAge { get; set; }
 
     /// <summary>
     /// Gets or sets the password for the user.

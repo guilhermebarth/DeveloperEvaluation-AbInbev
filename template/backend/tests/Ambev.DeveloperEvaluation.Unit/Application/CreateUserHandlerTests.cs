@@ -43,7 +43,8 @@ public class CreateUserHandlerTests
         var user = new User
         {
             Id = Guid.NewGuid(),
-            Username = command.Username,
+            FirstName = command.FirstName,
+            LastName = command.LastName,
             Password = command.Password,
             Email = command.Email,
             Phone = command.Phone,
@@ -102,7 +103,7 @@ public class CreateUserHandlerTests
         var user = new User
         {
             Id = Guid.NewGuid(),
-            Username = command.Username,
+            FirstName = command.FirstName,
             Password = command.Password,
             Email = command.Email,
             Phone = command.Phone,
@@ -136,7 +137,7 @@ public class CreateUserHandlerTests
         var user = new User
         {
             Id = Guid.NewGuid(),
-            Username = command.Username,
+            FirstName = command.FirstName,
             Password = command.Password,
             Email = command.Email,
             Phone = command.Phone,
@@ -154,7 +155,7 @@ public class CreateUserHandlerTests
 
         // Then
         _mapper.Received(1).Map<User>(Arg.Is<CreateUserCommand>(c =>
-            c.Username == command.Username &&
+            c.FirstName == command.FirstName &&
             c.Email == command.Email &&
             c.Phone == command.Phone &&
             c.Status == command.Status &&

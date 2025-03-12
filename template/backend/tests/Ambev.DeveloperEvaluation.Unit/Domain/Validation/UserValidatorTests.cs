@@ -60,13 +60,13 @@ public class UserValidatorTests
     {
         // Arrange
         var user = UserTestData.GenerateValidUser();
-        user.Username = username;
+        user.FirstName = username;
 
         // Act
         var result = _validator.TestValidate(user);
 
         // Assert
-        result.ShouldHaveValidationErrorFor(x => x.Username);
+        result.ShouldHaveValidationErrorFor(x => x.FirstName);
     }
 
     /// <summary>
@@ -80,13 +80,13 @@ public class UserValidatorTests
     {
         // Arrange
         var user = UserTestData.GenerateValidUser();
-        user.Username = UserTestData.GenerateLongUsername();
+        user.FirstName = UserTestData.GenerateLongUsername();
 
         // Act
         var result = _validator.TestValidate(user);
 
         // Assert
-        result.ShouldHaveValidationErrorFor(x => x.Username);
+        result.ShouldHaveValidationErrorFor(x => x.FirstName);
     }
 
     /// <summary>

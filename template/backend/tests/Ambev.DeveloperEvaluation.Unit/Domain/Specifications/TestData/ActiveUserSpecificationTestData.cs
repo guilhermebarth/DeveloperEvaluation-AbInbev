@@ -26,7 +26,7 @@ public static class ActiveUserSpecificationTestData
         .CustomInstantiator(f => new User {
             Email = f.Internet.Email(),
             Password = $"Test@{f.Random.Number(100, 999)}",
-            Username = f.Name.FirstName(),
+            FirstName = f.Name.FirstName(),
             Status = f.PickRandom<UserStatus>(),
             Phone = $"+55{f.Random.Number(11, 99)}{f.Random.Number(100000000, 999999999)}",
             Role = f.PickRandom<UserRole> ()
